@@ -177,12 +177,12 @@
       <!-- Navigation Buttons -->
       <div class="button-group">
         <button v-if="currentStep > 1" @click="prevStep" class="nav-btn btn-secondary">
-          ← Previous
+          ◁◀◁ &nbsp; Previous
         </button>
         <button v-if="currentStep < 3" @click="nextStep" class="nav-btn btn-primary">
-          Next →
+          Next  &nbsp; ▶▷▶
         </button>
-        <button v-if="currentStep === 3" @click="handleSubmit" class="nav-btn btn-primary">
+        <button v-if="currentStep === 3" @click="handleSubmit" class="nav-btn btn-primary confirm-btn">
           Confirm Registration
         </button>
       </div>
@@ -302,6 +302,11 @@ export default {
   background-color: #e0e0e0;
   color: #1a1a1a;
 }
+
+/* .container.dark-mode .confirm-btn {
+  background-color: #f72c2c;
+  color: #ffffff;
+} */
 
 .container.dark-mode .btn-primary:hover {
   background-color: #ccc;
