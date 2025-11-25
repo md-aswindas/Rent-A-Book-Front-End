@@ -420,7 +420,7 @@ export default {
   font-weight: 700;
   color: #333;
   margin: 0;
-  background-image: url("D:\Vue.js\elarte\src\assets\elarte black.png");
+  /* background-image: url("D:\Vue.js\elarte\src\assets\elarte black.png"); */
   background-position: center;
   background-size: contain;
   width: 200px;
@@ -430,7 +430,7 @@ export default {
 
 .container.dark-mode .site-name {
   color: #e0e0e0;
-  background-image: url("D:\Vue.js\elarte\src\assets\elarte white.png");
+  /* background-image: url("D:\Vue.js\elarte\src\assets\elarte white.png"); */
 }
 
 .main-text {
