@@ -177,12 +177,12 @@
       <!-- Navigation Buttons -->
       <div class="button-group">
         <button v-if="currentStep > 1" @click="prevStep" class="nav-btn btn-secondary">
-          ← Previous
+          ◁◀◁ &nbsp; Previous
         </button>
         <button v-if="currentStep < 3" @click="nextStep" class="nav-btn btn-primary">
-          Next →
+          Next  &nbsp; ▶▷▶
         </button>
-        <button v-if="currentStep === 3" @click="handleSubmit" class="nav-btn btn-primary">
+        <button v-if="currentStep === 3" @click="handleSubmit" class="nav-btn btn-primary confirm-btn">
           Confirm Registration
         </button>
       </div>
@@ -303,6 +303,11 @@ export default {
   color: #1a1a1a;
 }
 
+/* .container.dark-mode .confirm-btn {
+  background-color: #f72c2c;
+  color: #ffffff;
+} */
+
 .container.dark-mode .btn-primary:hover {
   background-color: #ccc;
 }
@@ -421,8 +426,9 @@ export default {
   color: #333;
   margin: 0;
   /* background-image: url("D:\Vue.js\elarte\src\assets\elarte black.png"); */
+  /* background-image: url("D:\Vue.js\elarte\src\assets\elarte black.png");
   background-position: center;
-  background-size: contain;
+  background-size: contain; */
   width: 200px;
   height: 50px;
   transition: color 0.3s ease, background-image 0.3s ease;
