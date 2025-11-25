@@ -1,0 +1,333 @@
+<template>
+  <div class="container">
+    <div class="dashboard">
+      <div class="dash-header">
+        <h3>Dashboard</h3>
+      </div>
+      <div class="dash-content">
+        <router-link class="link" to="/dashHome"><h3><v-icon icon="mdi-home-outline" style="margin-right: 10px;" size="23"></v-icon>Home</h3></router-link>
+        <router-link class="link" to="/dashBooks"><h3><v-icon icon="mdi-book-outline" style="margin-right: 10px;" size="23"></v-icon>Books</h3></router-link>
+        <router-link class="link" to="/dashUsers"><h3><v-icon icon="mdi-account-group-outline" style="margin-right: 10px;" size="23"></v-icon>Users</h3></router-link>
+        <router-link class="link" to="/dashRentals"><h3><v-icon icon="mdi-book-account-outline" style="margin-right: 10px;" size="23"></v-icon>Rentals</h3></router-link>
+        <router-link class="link" to="/dashFeedback"><h3><v-icon icon="mdi-forum-outline" style="margin-right: 10px;" size="23"></v-icon>Feedbacks</h3></router-link>
+        <router-link class="link" to="/dashAnalytics"><h3><v-icon icon="mdi-poll" style="margin-right: 10px;" size="23"></v-icon>Analytics</h3></router-link>
+      </div>
+      <div class="logout">
+        <h3>Logout</h3>
+      </div>
+    </div>
+    <div class="content">
+      <div class="header">
+        <div class="nav">
+          <div class="texts">
+            <h3>Home</h3>
+            <!-- <h4>Books</h4>
+            <h4>Feedbacks</h4> -->
+          </div>
+          <div class="search">
+            <div class="group">
+              <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                <g>
+                  <path
+                    d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                  ></path>
+                </g>
+              </svg>
+              <input placeholder="Search" type="search" class="input" />
+            </div>
+          </div>
+        </div>
+        <div class="nav-right">
+          <div class="icons">
+            <!-- <v-badge location="top right" color="red" dot>
+              <v-icon icon="mdi-bell-outline"></v-icon>
+            </v-badge> -->
+            
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider"> </span>
+            </label>
+            <v-badge location="top right" color="red" dot>
+              <v-icon icon="mdi-email-outline"></v-icon>
+            </v-badge>
+          </div>
+          <div class="profile">
+            <h4>Library Name</h4>
+            <v-avatar color="Black" size="40">
+              <v-icon icon="mdi-account-circle"></v-icon>
+            </v-avatar>
+          </div>
+        </div>
+      </div>
+
+      <div class="body">
+        <router-view></router-view>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style  scoped>
+.container {
+  background-color: rgb(0, 0, 0);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboard {
+  background-color: rgb(56, 56, 56);
+  height: 100%;
+  width: 17%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.dash-content {
+  color: white;
+  padding: 20px;
+  height: 380px;
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.link {
+  text-decoration: none;
+  color: white;
+}
+.dash-content h3 {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px; 
+}
+
+.dash-content h3:hover {
+  background-color: rgb(239, 239, 239);
+  color: rgb(56, 56, 56);
+}
+.dash-header {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+.dash-header h3 {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px;
+  width: 148px;
+  
+}
+.logout {
+  color: white;
+  padding: 20px;
+  background-color: #ff0000;
+  /* border: 1px solid white; */
+  border-radius: 10px;
+  cursor: pointer;
+  height: 40px;
+  width: 170px;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  background-color: rgb(239, 239, 239);
+  height: 100%;
+  width: 83%;
+  min-height: 100vh;
+}
+.header {
+  /* background-color: rgb(255, 255, 255); */
+  height: 11%;
+  width: 100%;
+  display: flex;
+}
+.nav {
+  /* background-color: rgb(200, 200, 200); */
+  height: 100%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.texts {
+  /* background-color: rgb(150, 150, 150); */
+  height: 60%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around; */
+  padding-left: 15px;
+}
+
+/* From Uiverse.io by alexruix */
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 200px;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 3.5rem;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  outline: none;
+  background-color: #ffffff;
+  color: #0d0c22;
+  transition: 0.3s ease;
+}
+
+.input::placeholder {
+  color: #9e9ea7;
+}
+
+.input:focus,
+input:hover {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.4);
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(49, 49, 49, 0.1);
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: #9e9ea7;
+  width: 1rem;
+  height: 1rem;
+}
+.nav-right {
+  /* background-color: rgb(180, 180, 180); */
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.icons {
+  /* background-color: rgb(150, 150, 150); */
+  height: 60%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile {
+  /* background-color: rgb(150, 150, 150); */
+  height: 60%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.body {
+  display: flex;
+  height: 90%;
+  width: 100%;
+}
+
+/* Switch container */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 1.6em;
+}
+
+/* Hide default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider background */
+.slider {
+  --background: #ffffff;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  transition: 0.5s;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  overflow: hidden;
+}
+
+/* Icons inside slider */
+.slider .icon {
+  position: absolute;
+  font-size: 14px;
+  opacity: 0.6;
+  transition: 0.4s;
+}
+
+.slider .moon {
+  left: 8px;
+}
+
+.slider .sun {
+  right: 8px;
+  opacity: 0; /* hidden in dark mode */
+}
+
+/* Circle knob */
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 1.2em;
+  width: 1.2em;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 0.2em;
+  box-shadow: inset 8px -4px 0px 0px rgb(56, 56, 56);
+  background: var(--background);
+  transition: 0.5s;
+}
+
+/* When ON (checked) */
+input:checked + .slider {
+  background-color: rgb(56, 56, 56);
+}
+
+/* Move knob to the right */
+input:checked + .slider:before {
+  transform: translateX(1.8em);
+  box-shadow: inset 15px -4px 0px 15px #ffffff;
+}
+
+/* Icon states toggle */
+input:checked + .slider .moon {
+  opacity: 0;
+}
+
+input:checked + .slider .sun {
+  opacity: 0.9;
+}
+</style>
