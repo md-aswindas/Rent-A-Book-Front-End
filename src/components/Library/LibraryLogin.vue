@@ -64,7 +64,7 @@
         </svg>
         Sign in with Google
       </button>
-      <p class="signup">Don't have an account ?<router-link to="/LibraryRegistration" class="login-link"><span class="login-link"> Sign up</span></router-link></p>
+      <p class="signup">Don't have an account ?<router-link to="/register" class="login-link"><span class="login-link"> Sign up</span></router-link></p>
     </div>
     
     <div class="footer-links">
@@ -95,7 +95,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .container{
   width: 100%;
   height: 100vh;
@@ -249,9 +249,9 @@ export default {
   font-weight: 700;
   color: #333;
   margin: 0;
-  /* background-image: url("D:\Vue.js\elarte\src\assets\elarte black.png");
+  background-image: url("D:\Vue.js\elarte\src\assets\elarte black.png");
   background-position: center;
-  background-size: contain; */
+  background-size: contain;
   width: 200px;
   height: 50px;
   transition: color 0.3s ease, background-image 0.3s ease;
@@ -259,7 +259,7 @@ export default {
 
 .container.dark-mode .site-name {
   color: #e0e0e0;
-  /* background-image: url("D:\Vue.js\elarte\src\assets\elarte white.png"); */
+  background-image: url("D:\Vue.js\elarte\src\assets\elarte white.png");
 }
 
 .main-text{
