@@ -425,6 +425,7 @@ export default {
   font-weight: 700;
   color: #333;
   margin: 0;
+  /* background-image: url("D:\Vue.js\elarte\src\assets\elarte black.png"); */
   /* background-image: url("D:\Vue.js\elarte\src\assets\elarte black.png");
   background-position: center;
   background-size: contain; */
