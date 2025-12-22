@@ -64,7 +64,7 @@
         </svg>
         Sign in with Google
       </button>
-      <p class="signup">Don't have an account ?<router-link to="/register" class="login-link"><span class="login-link"> Sign up</span></router-link></p>
+      <p class="signup">Don't have an account ?<router-link to="/LibraryRegistration" class="login-link"><span class="login-link"> Sign up</span></router-link></p>
     </div>
     
     <div class="footer-links">

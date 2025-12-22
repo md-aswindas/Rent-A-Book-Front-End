@@ -98,12 +98,7 @@
           class="text-field"
           placeholder="Monthly Fee *"
         />
-        <textarea
-          v-model="formData.library_description"
-          class="text-field textarea-field"
-          placeholder="Library Description"
-          rows="3"
-        ></textarea>
+        
         <textarea
           v-model="formData.address"
           class="text-field textarea-field"
@@ -120,13 +115,7 @@
           class="text-field"
           placeholder="Phone Number *"
         />
-        <input
-          type="tel"
-          v-model="formData.alt_phone_number"
-          class="text-field"
-          placeholder="Alternate Phone Number"
-        />
-        
+                
         <div class="password-container">
           <input
             :type="showPassword ? 'text' : 'password'"

@@ -1,26 +1,124 @@
 <template>
   <div class="container">
-    <div class="dashboard">
-      <div class="dash-header">
-        <h3>Dashboard</h3>
+    <div class="dashboard" :class="{ collapsed: isCollapsed }">
+      <div class="dash-header" @click="toggleCollapse">
+        <div  class="collapse-btn">
+          <v-icon
+            :icon="
+              isCollapsed ? 'mdi-view-dashboard-outline' : 'mdi-view-dashboard'
+            "
+          ></v-icon>
+        </div>
+        <h3 v-if="!isCollapsed">Dashboard</h3>
       </div>
       <div class="dash-content">
-        <router-link class="link" to="/dashHome"><h3><v-icon icon="mdi-home-outline" style="margin-right: 10px;" size="23"></v-icon>Home</h3></router-link>
-        <router-link class="link" to="/dashBooks"><h3><v-icon icon="mdi-book-outline" style="margin-right: 10px;" size="23"></v-icon>Books</h3></router-link>
-        <router-link class="link" to="/dashUsers"><h3><v-icon icon="mdi-account-group-outline" style="margin-right: 10px;" size="23"></v-icon>Users</h3></router-link>
-        <router-link class="link" to="/dashRentals"><h3><v-icon icon="mdi-book-account-outline" style="margin-right: 10px;" size="23"></v-icon>Rentals</h3></router-link>
-        <router-link class="link" to="/dashFeedback"><h3><v-icon icon="mdi-forum-outline" style="margin-right: 10px;" size="23"></v-icon>Feedbacks</h3></router-link>
-        <router-link class="link" to="/dashAnalytics"><h3><v-icon icon="mdi-poll" style="margin-right: 10px;" size="23"></v-icon>Analytics</h3></router-link>
+
+        <v-tooltip text="Home" location="right" :disabled="!isCollapsed">
+          <template v-slot:activator="{ props }">
+            <router-link class="link" to="/dashHome" v-bind="props" exact-active-class="active-link">
+              <h3>
+                <v-icon
+                  icon="mdi-home-outline"
+                  :style="{ marginRight: isCollapsed ? '0' : '10px' }"
+                  size="26"
+                ></v-icon>
+                <span v-if="!isCollapsed">Home</span>
+              </h3>
+            </router-link>
+          </template>
+        </v-tooltip>
+
+        <v-tooltip text="Books" location="right" :disabled="!isCollapsed">
+          <template v-slot:activator="{ props }">
+            <router-link class="link" to="/dashBooks" v-bind="props" exact-active-class="active-link">
+              <h3>
+                <v-icon
+                  icon="mdi-book-outline"
+                  :style="{ marginRight: isCollapsed ? '0' : '10px' }"
+                  size="26"
+                ></v-icon>
+                <span v-if="!isCollapsed">Books</span>
+              </h3>
+            </router-link>
+          </template>
+        </v-tooltip>
+        <v-tooltip text="Users" location="right" :disabled="!isCollapsed">
+          <template v-slot:activator="{ props }">
+            <router-link class="link" to="/dashUsers" v-bind="props" exact-active-class="active-link">
+              <h3>
+                <v-icon
+                  icon="mdi-account-group-outline"
+                  :style="{ marginRight: isCollapsed ? '0' : '10px' }"
+                  size="26"
+                ></v-icon>
+                <span v-if="!isCollapsed">Users</span>
+              </h3>
+            </router-link>
+          </template>
+        </v-tooltip>
+        <v-tooltip text="Rentals" location="right" :disabled="!isCollapsed">
+          <template v-slot:activator="{ props }">
+            <router-link class="link" to="/dashRentals" v-bind="props" exact-active-class="active-link">
+              <h3>
+                <v-icon
+                  icon="mdi-book-account-outline"
+                  :style="{ marginRight: isCollapsed ? '0' : '10px' }"
+                  size="26"
+                ></v-icon>
+                <span v-if="!isCollapsed">Rentals</span>
+              </h3>
+            </router-link>
+          </template>
+        </v-tooltip>
+        <v-tooltip text="Feedbacks" location="right" :disabled="!isCollapsed">
+          <template v-slot:activator="{ props }">
+            <router-link class="link" to="/dashFeedback" v-bind="props" exact-active-class="active-link">
+              <h3>
+                <v-icon
+                  icon="mdi-forum-outline"
+                  :style="{ marginRight: isCollapsed ? '0' : '10px' }"
+                  size="26"
+                ></v-icon>
+                <span v-if="!isCollapsed">Feedbacks</span>
+              </h3>
+            </router-link>
+          </template>
+        </v-tooltip>
+        <v-tooltip text="Analytics" location="right" :disabled="!isCollapsed">
+          <template v-slot:activator="{ props }">
+            <router-link class="link" to="/dashAnalytics" v-bind="props" exact-active-class="active-link">
+              <h3>
+                <v-icon
+                  icon="mdi-poll"
+                  :style="{ marginRight: isCollapsed ? '0' : '10px' }"
+                  size="26"
+                ></v-icon>
+                <span v-if="!isCollapsed">Analytics</span>
+              </h3>
+            </router-link>
+          </template>
+        </v-tooltip>
       </div>
-      <div class="logout">
-        <h3>Logout</h3>
-      </div>
+      <v-tooltip text="Logout" location="right" :disabled="!isCollapsed">
+        <template v-slot:activator="{ props }">
+          <div class="logout" v-bind="props">
+            <h3>
+              <v-icon
+                icon="mdi-logout"
+                :style="{ marginRight: isCollapsed ? '0' : '10px' }"
+                size="26"
+              ></v-icon>
+              <span v-if="!isCollapsed">Logout</span>
+            </h3>
+          </div>
+        </template>
+      </v-tooltip>
     </div>
     <div class="content">
       <div class="header">
         <div class="nav">
           <div class="texts">
-            <h3>Home</h3>
+            <h3>{{ $route.name }}</h3>
             <!-- <h4>Books</h4>
             <h4>Feedbacks</h4> -->
           </div>
@@ -33,7 +131,7 @@
                   ></path>
                 </g>
               </svg>
-              <input placeholder="Search" type="search" class="input" />
+              <input placeholder="Search Book" type="search" class="input" />
             </div>
           </div>
         </div>
@@ -42,16 +140,16 @@
             <!-- <v-badge location="top right" color="red" dot>
               <v-icon icon="mdi-bell-outline"></v-icon>
             </v-badge> -->
-            
+
             <label class="switch">
               <input type="checkbox" />
               <span class="slider"> </span>
             </label>
             <v-badge location="top right" color="red" dot>
-              <v-icon icon="mdi-email-outline"></v-icon>
+              <v-icon icon="mdi-email-outline" @click="toggleMessages"></v-icon>
             </v-badge>
           </div>
-          <div class="profile">
+          <div class="profile" @click="toggleProfile">
             <h4>Library Name</h4>
             <v-avatar color="Black" size="40">
               <v-icon icon="mdi-account-circle"></v-icon>
@@ -63,13 +161,61 @@
       <div class="body">
         <router-view></router-view>
       </div>
-
     </div>
+    <transition name="slide-right">
+      <div v-if="showMessages" class="messages-panel">
+        <div class="messages-header">
+          <h3>Messages</h3>
+          <v-icon
+            icon="mdi-close"
+            @click="toggleMessages"
+            class="close-icon"
+          ></v-icon>
+        </div>
+        <!-- Add message list here -->
+        <p>No new messages.</p>
+      </div>
+    </transition>
+    <transition name="slide-right">
+      <div v-if="showProfile" class="profile-view">
+        <div class="profile-header">
+          <h3>Library Name</h3>
+          <v-icon
+            icon="mdi-close"
+            @click="toggleProfile"
+            class="close-icon"
+          ></v-icon>
+        </div>
+        <div class="profile-content">
+          <p>Profile details go here.</p>
+        </div>
+        <!-- Profile view content here -->
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      showMessages: false,
+      showProfile: false,
+      isCollapsed: false,
+    };
+  },
+  methods: {
+    toggleMessages() {
+      this.showMessages = !this.showMessages;
+    },
+    toggleProfile() {
+      this.showProfile = !this.showProfile;
+    },
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
+    },
+  },
+};
 </script>
 
 <style  scoped>
@@ -90,6 +236,10 @@ export default {};
   align-items: center;
   padding-top: 50px;
   padding-bottom: 50px;
+  transition: width 0.3s ease;
+}
+.dashboard.collapsed {
+  width: 100px;
 }
 .dash-content {
   color: white;
@@ -104,33 +254,62 @@ export default {};
   text-decoration: none;
   color: white;
 }
+/* ACTIVE ROUTE */
+.active-link h3 {
+  background-color: rgb(239, 239, 239);
+  color: rgb(56, 56, 56);
+}
+/* active + hover */
+.active-link h3:hover {
+  background-color: rgba(255, 255, 255, 0.24);
+}
+
+.dashboard.collapsed .active-link h3 {
+  background-color: #383838;
+  color: rgb(251, 252, 193);
+}
+
+.dashboard.collapsed .active-link h3:hover {
+  background-color: #4a4a4a;
+}
+
 .dash-content h3 {
   cursor: pointer;
   padding: 8px;
-  border-radius: 10px; 
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .dash-content h3:hover {
-  background-color: rgb(239, 239, 239);
-  color: rgb(56, 56, 56);
+  /* background-color: rgb(239, 239, 239); */
+  color: rgb(199, 254, 163);
+}
+.dashboard.collapsed .dash-content h3 {
+  justify-content: center;
+}
+.dashboard.collapsed .dash-content h3:hover {
+  background-color: #383838;
+  color: rgb(251, 252, 193);
 }
 .dash-header {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 20px;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .dash-header h3 {
   cursor: pointer;
   padding: 8px;
   border-radius: 10px;
-  width: 148px;
-  
 }
 .logout {
-  color: white;
+  color: #ff0000;
   padding: 20px;
-  background-color: #ff0000;
+  /* background-color: #ff0000; */
   /* border: 1px solid white; */
   border-radius: 10px;
   cursor: pointer;
@@ -141,10 +320,13 @@ export default {};
   justify-content: center;
   align-items: center;
 }
+.dashboard.collapsed .logout {
+  width: 50px;
+}
 .content {
   background-color: rgb(239, 239, 239);
   height: 100%;
-  width: 83%;
+  flex: 1;
   min-height: 100vh;
 }
 .header {
@@ -178,7 +360,7 @@ export default {};
   line-height: 28px;
   align-items: center;
   position: relative;
-  max-width: 200px;
+  max-width: 350px;
 }
 
 .input {
@@ -238,10 +420,11 @@ input:hover {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  cursor: pointer;
 }
 .body {
   display: flex;
-  height: 90%;
+  height: 691px;
   width: 100%;
 }
 
@@ -330,4 +513,64 @@ input:checked + .slider .moon {
 input:checked + .slider .sun {
   opacity: 0.9;
 }
+.messages-panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: rgb(239, 239, 239);
+  z-index: 10;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+.messages-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.profile-view {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 500px;
+  height: 100vh;
+  background-color: rgb(239, 239, 239);
+  z-index: 10;
+  padding: 30px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.close-icon {
+  cursor: pointer;
+}
+.collapse-btn {
+  cursor: pointer;
+}
+.profile-content {
+  font-size: 16px;
+  color: #333;
+}
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 0.3s ease;
+}
+.slide-right-enter-from {
+  transform: translateX(100%);
+}
+.slide-right-leave-to {
+  transform: translateX(100%);
+}
+
+/* -------------------------------------------------- */
+
 </style>
