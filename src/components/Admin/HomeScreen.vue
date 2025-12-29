@@ -6,7 +6,7 @@
           <v-icon size="35px">mdi-view-dashboard</v-icon>Dashboard
         </router-link>
         <v-divider class="my-2" />
-        <router-link class="nav-link" to="/users"
+         <router-link class="nav-link" to="/allUsers"
           ><v-icon size="35px">mdi-account-group</v-icon>Users</router-link
         >
         <v-divider class="my-2" />
@@ -23,7 +23,7 @@
           ><v-icon size="35px">mdi-currency-inr</v-icon>Revenue</router-link
         >
         <v-divider class="my-2" />
-        <router-link class="nav-link" to="/rentals"
+        <router-link class="nav-link" to="/allRentals"
           ><v-icon size="35px">mdi-book-open-variant</v-icon
           >Rentals</router-link
         >

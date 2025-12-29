@@ -35,14 +35,14 @@ const router = createRouter({
           component: () => import("@/components/Admin/HomeNavigation/ViewLibraries.vue"),
         },
         {
-          path: "/users",
-          name: "Users",
-          component: () => import("@/components/Admin/HomeNavigation/ViewUsers.vue"),
+          path: "/allUsers",
+          name: "AllUsers",
+          component: () => import("@/components/Admin/HomeNavigation/AllUsers.vue"),
         },
         {
-          path: "/rentals",
+          path: "/allRentals",
           name: "Rentals",
-          component: () => import("@/components/Admin/HomeNavigation/ViewRentals.vue"),
+          component: () => import("@/components/Admin/HomeNavigation/ViewRental.vue"),
         },
         {
           path: "/revenue",
