@@ -81,26 +81,32 @@ const router = createRouter({
       children: [
         {
           path: "/dashHome",
+          name: "Home",
           component: () => import("./components/Library/DashHome.vue"),
         },
         {
           path: "/dashBooks",
+          name: "Books",
           component: () => import("./components/Library/DashBook.vue"),
         },
         {
           path: "/dashUsers",
+          name: "Users",
           component: () => import("./components/Library/DashUsers.vue"),
         },
         {
           path: "/dashRentals",
+          name: "Rentals",
           component: () => import("./components/Library/DashRentals.vue"),
         },
         {
           path: "/dashFeedback",
+          name: "Feedback",
           component: () => import("./components/Library/DashFeedback.vue"),
         },
         {
           path: "/dashAnalytics",
+          name: "Analytics",
           component: () => import("./components/Library/DashAnalytics.vue"),
         },
       ],
