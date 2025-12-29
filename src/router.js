@@ -60,7 +60,7 @@ const router = createRouter({
       children: [
         {
           path: "/dashHome",
-          name: "Home",
+          name: "Dashboard",
           component: () => import("./components/Library/DashHome.vue"),
         },
         {

@@ -5,11 +5,11 @@
         <div  class="collapse-btn">
           <v-icon
             :icon="
-              isCollapsed ? 'mdi-view-dashboard-outline' : 'mdi-view-dashboard'
+              isCollapsed ? 'mdi-arrow-right-box' : 'mdi-arrow-left-box'
             "
           ></v-icon>
         </div>
-        <h3 v-if="!isCollapsed">Dashboard</h3>
+        <h3 v-if="!isCollapsed">Name</h3>
       </div>
       <div class="dash-content">
 
@@ -18,11 +18,11 @@
             <router-link class="link" to="/dashHome" v-bind="props" exact-active-class="active-link">
               <h3>
                 <v-icon
-                  icon="mdi-home-outline"
+                  icon="mdi-view-dashboard"
                   :style="{ marginRight: isCollapsed ? '0' : '10px' }"
                   size="26"
                 ></v-icon>
-                <span v-if="!isCollapsed">Home</span>
+                <span v-if="!isCollapsed">Dashboard</span>
               </h3>
             </router-link>
           </template>

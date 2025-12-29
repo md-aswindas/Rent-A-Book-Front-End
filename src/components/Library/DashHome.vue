@@ -1,6 +1,29 @@
 <template>
   <div class="body">
     <div class="body-left">
+      <div class="summary-cards">
+        <div class="summary-card users-card">
+          <h3>Total Users</h3>
+          <div class="card-content">
+            <v-icon size="40" color="#007bff">mdi-account-group</v-icon>
+            <p>{{ totalUsers }}</p>
+          </div>
+        </div>
+        <div class="summary-card books-card">
+          <h3>Total Books</h3>
+          <div class="card-content">
+            <v-icon size="40" color="#007bff">mdi-book-open-page-variant</v-icon>
+            <p>{{ totalBooks }}</p>
+          </div>
+        </div>
+        <div class="summary-card rentals-card">
+          <h3>Active Rentals</h3>
+          <div class="card-content">
+            <v-icon size="40" color="#007bff">mdi-book-clock</v-icon>
+            <p>{{ activeRentals }}</p>
+          </div>
+        </div>
+      </div>
       <h2>Active Rentals</h2>
       <div class="static-cards">
         <div class="card">
@@ -82,6 +105,77 @@
         <h5>History</h5>
         <h5>Mystery</h5>
       </div>
+
+      <div class="static-cards">
+        <div class="card">
+          <div class="img">
+            <img :src="require('../../assets/got.jpg')" alt="Book" />
+          </div>
+          <div class="card-txt">
+            <div class="card-txt-name">
+              <h4>Game of Thrones</h4>
+              <h5 style="font-weight: 400; color: #575656; font-size: 12px">
+                George RR Martin
+              </h5>
+            </div>
+            <div class="card-txt-dates">
+              <h5>Due : &nbsp;</h5>
+              <h5>01/02/2025</h5>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img">
+            <img :src="require('../../assets/got1.jpg')" alt="Book" />
+          </div>
+          <div class="card-txt">
+            <div class="card-txt-name">
+              <h4>Game of Thrones</h4>
+              <h5 style="font-weight: 400; color: #575656; font-size: 12px">
+                George RR Martin
+              </h5>
+            </div>
+            <div class="card-txt-dates">
+              <h5>Due : &nbsp;</h5>
+              <h5>01/02/2025</h5>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img">
+            <img :src="require('../../assets/witcher.webp')" alt="Book" />
+          </div>
+          <div class="card-txt">
+            <div class="card-txt-name">
+              <h4>The Witcher</h4>
+              <h5 style="font-weight: 400; color: #575656; font-size: 12px">
+                Lauren Schmidt Hissrich
+              </h5>
+            </div>
+            <div class="card-txt-dates">
+              <h5>Due : &nbsp;</h5>
+              <h5>01/02/2025</h5>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img">
+            <img :src="require('../../assets/got.jpg')" alt="Book" />
+          </div>
+          <div class="card-txt">
+            <div class="card-txt-name">
+              <h4>Game of Thrones</h4>
+              <p style="font-weight: 400; color: #575656; font-size: 12px">
+                George RR Martin
+              </p>
+            </div>
+            <div class="card-txt-dates">
+              <h5>Due : &nbsp;</h5>
+              <h5>01/02/2025</h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="body-right">
@@ -100,7 +194,7 @@
             </div>
 
             <div class="card-date-fine">
-              <div class="card-txt-dates">
+              <div class="card-txt-dates returned-on">
                 <h5>Returned On : &nbsp;</h5>
                 <h5>01/02/2025</h5>
               </div>
@@ -133,7 +227,7 @@
             </div>
 
             <div class="card-date-fine">
-              <div class="card-txt-dates">
+              <div class="card-txt-dates returned-on">
                 <h5>Returned On : &nbsp;</h5>
                 <h5>01/02/2025</h5>
               </div>
@@ -166,7 +260,7 @@
             </div>
 
             <div class="card-date-fine">
-              <div class="card-txt-dates">
+              <div class="card-txt-dates returned-on">
                 <h5>Returned On : &nbsp;</h5>
                 <h5>01/02/2025</h5>
               </div>
@@ -199,7 +293,7 @@
             </div>
 
             <div class="card-date-fine">
-              <div class="card-txt-dates">
+              <div class="card-txt-dates returned-on">
                 <h5>Returned On : &nbsp;</h5>
                 <h5>01/02/2025</h5>
               </div>
@@ -233,12 +327,13 @@
   /* background-color: rgb(206, 34, 34); */
   height: 691px;
   /* min-height: calc(100vh - 80px); */
-  width: 60%;
+  width: 65%;
   padding-left: 35px;
   padding-top: 10px;
   padding-right: 20px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 .static-cards {
   /* background-color: rgb(200, 200, 200); */
@@ -327,10 +422,16 @@
   height: 26px;
   justify-content: center;
   align-items: center;
-  color: rgb(57, 57, 57);
-  /* border: #000000 1px solid; */
+  background-color: #ffd1d1;
+  color: #c00202;
+  border: 1px solid #dca3a3;
   border-radius: 7px;
-  background-color: #d8d7d7;
+  
+}
+.returned-on {
+  background-color: #fce4bb;
+  color: rgb(128, 64, 0);
+  border: 1px solid #e6d0a3;
 }
 .card-date-fine {
   display: flex;
@@ -339,6 +440,16 @@
 
 .card:hover .card-txt {
   opacity: 100%;
+}
+
+.card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
 }
 
 .categories {
@@ -531,7 +642,7 @@
   /* background-color: rgb(201, 112, 112); */
   /* min-height: calc(100vh - px); */
   height: 691px;
-  width: 40%;
+  width: 35%;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 35px;
@@ -553,4 +664,64 @@
   margin-top: 20px;
   margin-bottom: 40px;
 }
+
+.summary-cards {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summary-card p {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.users-card .summary-card p {
+  color: #007bff;
+}
+
+.books-card .summary-card p {
+  color: #28a745;
+}
+
+.rentals-card .summary-card p {
+  color: #ffc107;
+}
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      totalUsers: 150,
+      totalBooks: 500,
+      activeRentals: 25
+    };
+  }
+};
+</script>
