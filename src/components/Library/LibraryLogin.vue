@@ -24,7 +24,7 @@
     <div class="form-section">
       <h2 class="main-text">Welcome back </h2>
       <p class="sub-text">Welcome back!   Please enter your details.</p>
-      <input type="text" name="" class="text-field" placeholder="email@gmail.com">
+      <input type="text" name="" class="text-field" placeholder="email@gmail.com" v-model="email" >
       
       <div class="password-container">
         <input 
@@ -32,6 +32,7 @@
           name="" 
           class="text-field password-field" 
           placeholder="Password"
+          v-model="password"
         >
         <button 
           type="button" 
@@ -49,7 +50,7 @@
         </button>
       </div>
       
-      <button class="text-field btn">Login</button>
+      <button class="text-field btn" @click="login">Login</button>
       <div class="divider">
         <div class="line"></div>
         <h5 class="grey-text">OR</h5>
@@ -77,14 +78,33 @@
 </template>
 
 <script>
+  import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      email: "",
+      password: "",
       showPassword: false,
       isDarkMode: false
     }
   },
   methods: {
+    ...mapActions("Library", ["libraryLogin"]),
+    async login() {
+      try {
+        const success= await this.libraryLogin({ email: this.email, password: this.password });
+        if(success){
+          this.$router.push('/libraryDashboard/DashHome');
+        }else{
+          alert("Invalid credentials. Please try again.");
+        }
+        
+      } catch (error) {
+        console.error("Login failed:", error);
+        alert("Login failed. Please check your credentials and try again.");
+      }
+    },
+
     togglePassword() {
       this.showPassword = !this.showPassword;
     },
@@ -95,7 +115,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container{
   width: 100%;
   height: 100vh;

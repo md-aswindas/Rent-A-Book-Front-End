@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "./store";
+
 import LibraryDashboard from "./components/Library/LibraryDashboard.vue";
 import AdminDashboard from "./components/Admin/HomeScreen.vue";
 
@@ -13,14 +15,14 @@ const router = createRouter({
       path: "/AdminLogin",
       component: () => import("./components/Admin/AdminLogin.vue"),
     },
-    {
-      path: "/dash",
-      component: () => import("@/components/Admin/HomeScreen.vue"),
-    },
-
+    
     {
       path: "/homePage",
       component: AdminDashboard,
+      meta: {
+        requiresAuth:true,
+        role: "ROLE_ADMIN",
+      },
       children: [
         {
           path: "/dashboard",
@@ -61,11 +63,6 @@ const router = createRouter({
         },
       ],
     },
-
-    {
-      path: "/AdminLogin",
-      component: () => import("./components/Admin/AdminLogin.vue"),
-    },
     {
       path: "/LibraryLogin",
       component: () => import("./components/Library/LibraryLogin.vue"),
@@ -78,40 +75,79 @@ const router = createRouter({
     {
       path: "/libraryDashboard",
       component: LibraryDashboard,
+      meta: {
+        requiresAuth:true,
+        role: "ROLE_LIBRARY",
+      },
       children: [
         {
-          path: "/dashHome",
+          path: "",
+          redirect: "dashHome", // 👈 DEFAULT CHILD
+        },
+        {
+          path: "dashHome",
           name: "Dashboard",
           component: () => import("./components/Library/DashHome.vue"),
         },
         {
-          path: "/dashBooks",
+          path: "dashBooks",
           name: "Books",
           component: () => import("./components/Library/DashBook.vue"),
         },
         {
-          path: "/dashUsers",
+          path: "dashUsers",
           name: "Users",
           component: () => import("./components/Library/DashUsers.vue"),
         },
         {
-          path: "/dashRentals",
+          path: "dashRentals",
           name: "Rentals",
           component: () => import("./components/Library/DashRentals.vue"),
         },
         {
-          path: "/dashFeedback",
-          name: "Feedback",
+          path: "dashFeedback",
+          name: "Feedbacks",
           component: () => import("./components/Library/DashFeedback.vue"),
         },
         {
-          path: "/dashAnalytics",
+          path: "dashAnalytics",
           name: "Analytics",
           component: () => import("./components/Library/DashAnalytics.vue"),
         },
+        
       ],
     },
+    {
+      path: "/:pathMatch(.*)*",
+      component: () => import("@/components/Library/NotFound.vue"),
+    },
+    {
+      path: "/unauthorized",
+      component: () => import("@/components/Library/UnauthorizedPage.vue"),
+    },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = store.getters["Auth/isAuthenticated"];
+  const role = store.getters["Auth/getRole"];
+
+  // Public route
+  if (!to.meta.requiresAuth) {
+    return next();
+  }
+
+  // Not logged in
+  if (!isAuthenticated) {
+    return next("/LibraryLogin");
+  }
+
+  // Role mismatch
+  if (to.meta.role && to.meta.role !== role) {
+    return next("/unauthorized"); // later: /unauthorized
+  }
+
+  next();
 });
 
 export default router;

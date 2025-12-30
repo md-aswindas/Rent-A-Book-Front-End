@@ -1,21 +1,27 @@
 <template>
   <div class="container">
     <div class="dashboard" :class="{ collapsed: isCollapsed }">
-      <div class="dash-header" @click="toggleCollapse">
-        <div  class="collapse-btn">
+      <div class="dash-header">
+        <div class="collapse-btn">
           <v-icon
             :icon="
-              isCollapsed ? 'mdi-arrow-right-box' : 'mdi-arrow-left-box'
+              isCollapsed
+                ? 'mdi-book-open-page-variant-outline'
+                : 'mdi-book-open-page-variant-outline'
             "
           ></v-icon>
         </div>
-        <h3 v-if="!isCollapsed">Name</h3>
+        <h3 v-if="!isCollapsed">RentABook</h3>
       </div>
       <div class="dash-content">
-
         <v-tooltip text="Home" location="right" :disabled="!isCollapsed">
           <template v-slot:activator="{ props }">
-            <router-link class="link" to="/dashHome" v-bind="props" exact-active-class="active-link">
+            <router-link
+              class="link"
+              to="/libraryDashboard/dashHome"
+              v-bind="props"
+              exact-active-class="active-link"
+            >
               <h3>
                 <v-icon
                   icon="mdi-view-dashboard"
@@ -30,7 +36,12 @@
 
         <v-tooltip text="Books" location="right" :disabled="!isCollapsed">
           <template v-slot:activator="{ props }">
-            <router-link class="link" to="/dashBooks" v-bind="props" exact-active-class="active-link">
+            <router-link
+              class="link"
+              to="/libraryDashboard/dashBooks"
+              v-bind="props"
+              exact-active-class="active-link"
+            >
               <h3>
                 <v-icon
                   icon="mdi-book-outline"
@@ -44,7 +55,12 @@
         </v-tooltip>
         <v-tooltip text="Users" location="right" :disabled="!isCollapsed">
           <template v-slot:activator="{ props }">
-            <router-link class="link" to="/dashUsers" v-bind="props" exact-active-class="active-link">
+            <router-link
+              class="link"
+              to="/libraryDashboard/dashUsers"
+              v-bind="props"
+              exact-active-class="active-link"
+            >
               <h3>
                 <v-icon
                   icon="mdi-account-group-outline"
@@ -58,7 +74,12 @@
         </v-tooltip>
         <v-tooltip text="Rentals" location="right" :disabled="!isCollapsed">
           <template v-slot:activator="{ props }">
-            <router-link class="link" to="/dashRentals" v-bind="props" exact-active-class="active-link">
+            <router-link
+              class="link"
+              to="/libraryDashboard/dashRentals"
+              v-bind="props"
+              exact-active-class="active-link"
+            >
               <h3>
                 <v-icon
                   icon="mdi-book-account-outline"
@@ -72,7 +93,12 @@
         </v-tooltip>
         <v-tooltip text="Feedbacks" location="right" :disabled="!isCollapsed">
           <template v-slot:activator="{ props }">
-            <router-link class="link" to="/dashFeedback" v-bind="props" exact-active-class="active-link">
+            <router-link
+              class="link"
+              to="/libraryDashboard/dashFeedback"
+              v-bind="props"
+              exact-active-class="active-link"
+            >
               <h3>
                 <v-icon
                   icon="mdi-forum-outline"
@@ -86,7 +112,12 @@
         </v-tooltip>
         <v-tooltip text="Analytics" location="right" :disabled="!isCollapsed">
           <template v-slot:activator="{ props }">
-            <router-link class="link" to="/dashAnalytics" v-bind="props" exact-active-class="active-link">
+            <router-link
+              class="link"
+              to="/libraryDashboard/dashAnalytics"
+              v-bind="props"
+              exact-active-class="active-link"
+            >
               <h3>
                 <v-icon
                   icon="mdi-poll"
@@ -99,9 +130,10 @@
           </template>
         </v-tooltip>
       </div>
-      <v-tooltip text="Logout" location="right" :disabled="!isCollapsed">
+      <div class="bottom-items">
+        <v-tooltip text="Logout" location="right" :disabled="!isCollapsed">
         <template v-slot:activator="{ props }">
-          <div class="logout" v-bind="props">
+          <div class="logout" v-bind="props" @click="logout">
             <h3>
               <v-icon
                 icon="mdi-logout"
@@ -113,7 +145,27 @@
           </div>
         </template>
       </v-tooltip>
-    </div>
+      <v-tooltip
+        text="Expand Sidebar"
+        location="right"
+        :disabled="!isCollapsed"
+      >
+        <template v-slot:activator="{ props }">
+          <div class="collapse-toggle" v-bind="props" @click="toggleCollapse">
+            <h3>
+              <v-icon
+                :icon="
+                  isCollapsed
+                    ? 'mdi-arrow-collapse-right'
+                    : 'mdi-arrow-collapse-left'
+                "
+                :style="{ marginRight: isCollapsed ? '0' : '10px' }"
+              ></v-icon>
+              <span v-if="!isCollapsed">Collapse Sidebar</span>
+            </h3>
+          </div>
+        </template>
+      </v-tooltip>      </div>    </div>
     <div class="content">
       <div class="header">
         <div class="nav">
@@ -214,6 +266,10 @@ export default {
     toggleCollapse() {
       this.isCollapsed = !this.isCollapsed;
     },
+    logout() {
+    this.$store.dispatch("Auth/logout");
+    this.$router.push("/LibraryLogin");
+  },
   },
 };
 </script>
@@ -232,10 +288,8 @@ export default {
   width: 17%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding: 20px 0;
   transition: width 0.3s ease;
 }
 .dashboard.collapsed {
@@ -244,11 +298,12 @@ export default {
 .dash-content {
   color: white;
   padding: 20px;
-  height: 380px;
+  flex-grow: 1;
   width: 190px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
 }
 .link {
   text-decoration: none;
@@ -314,14 +369,41 @@ export default {
   border-radius: 10px;
   cursor: pointer;
   height: 40px;
-  width: 170px;
+  width: 190px;
   margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.collapse-toggle {
+  color: #dddddd;
+  padding: 5px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 30px;
+  width: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.collapse-toggle.icon {
+  margin-right: 5px;
+}
 .dashboard.collapsed .logout {
   width: 50px;
+}
+.dashboard.collapsed .collapse-toggle {
+  width: 50px;
+  border: none;
+}
+.bottom-items {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .content {
   background-color: rgb(239, 239, 239);
@@ -572,5 +654,4 @@ input:checked + .slider .sun {
 }
 
 /* -------------------------------------------------- */
-
 </style>
