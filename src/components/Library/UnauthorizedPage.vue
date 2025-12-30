@@ -20,7 +20,7 @@ export default {
       // Optional safety fallback:
       // if there is no history, redirect to login
       if (window.history.length <= 1) {
-        this.$router.push("/LibraryLogin");
+        this.$router.push("/");
       }
     },
   },

@@ -178,7 +178,7 @@
 
       <p class="signup">
         Already have an account? 
-        <router-link to="/LibraryLogin" class="login-link">
+        <router-link to="/" class="login-link">
           <span class="login-link">Sign In</span>
         </router-link>
       </p>

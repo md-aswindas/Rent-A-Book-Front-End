@@ -268,7 +268,7 @@ export default {
     },
     logout() {
     this.$store.dispatch("Auth/logout");
-    this.$router.push("/LibraryLogin");
+    this.$router.push("/");
   },
   },
 };

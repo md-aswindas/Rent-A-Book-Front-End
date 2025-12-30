@@ -64,7 +64,7 @@ const router = createRouter({
       ],
     },
     {
-      path: "/LibraryLogin",
+      path: "/",
       component: () => import("./components/Library/LibraryLogin.vue"),
     },
     {
